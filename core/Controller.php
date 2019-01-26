@@ -45,6 +45,21 @@ abstract class Controller {
     
     /**
      *
+     * Instance d'objet Response
+     * @var Response 
+     */
+    protected $response;
+    
+    /**
+     *
+     * Instance d'objet Request
+     * @var Request
+     */
+    protected $request;
+    
+    
+    /**
+     *
      * Cette propriété sera initialisée lors de l'appel de la methode 
      * securityLoader()
      * @var SecurityMiddleware 
@@ -66,6 +81,7 @@ abstract class Controller {
         $this->get = $_GET;
         $this->post = $_POST;
         parse_str(file_get_contents("php://input"), $this->put);
+        $this->response = new Response($this->security);
     }
 
     /**

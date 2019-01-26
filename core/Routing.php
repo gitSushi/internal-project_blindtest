@@ -43,10 +43,15 @@ class Routing {
      * @var string 
      */
     private $method;
+    
 
     function __construct() {
+        $DS = DIRECTORY_SEPARATOR;
+        $directory = explode($DS, __DIR__);
+        unset($directory[count($directory)-1]);
+        $root = implode($DS, $directory);
         $this->config = json_decode(
-                file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/config/routing.json")
+                file_get_contents($root . $DS ."config". $DS ."routing.json")
                 , true
         );
         $this->args = array();
