@@ -164,4 +164,11 @@ class DefaultController extends Controller
         var_dump($_FILES);
 
     }
+
+    public function getJSON()
+    {
+        $this->response->sendJSON(array(
+            "toto" => "tata"
+        ));
+    }
 }
