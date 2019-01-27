@@ -38,6 +38,20 @@ class Response
         }
     }
 
+
+    /**
+     * 
+     * La methode permet au developpeur backend de gerer les codes retour du serveur
+     * 
+     * @return Response retourne l'objet response courant afin de pouvoir utiliser le chainage de methodes
+     * 
+     * @param int $code le code retour que le serveur doit renvoyer
+     */
+    final public function status(int $code = 200){
+        http_response_code($code);
+        return $this;
+    }
+
     /**
      * La methode render affiche la vue selectionnée grace au premier argument
      * La methode utilise les indirection pour generer dynamiquement les noms des variables
