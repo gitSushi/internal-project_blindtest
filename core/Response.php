@@ -15,10 +15,27 @@ class Response
     }
 
 
+    /**
+     * La methode permet de retouner les données au format json
+     * 
+     * 
+     * @param mixed $data les données a retourner au format json
+     * 
+     * @todo implémenter les exceptions pour lever une UnauthorizedTypeException
+     */
     final public function sendJSON($data)
     {
         header('Content-Type: application/json');
-        echo json_encode($data);
+        if(is_array($data)){
+            echo json_encode($data);
+        }elseif(is_string($data)){
+            echo $data;
+        }elseif($data instanceof \JsonSerializable){
+            echo json_encode($data->jsonSerialize());
+        }else{
+            // doit lever une UnauthorizedTypeException 
+            throw new Exception();
+        }
     }
 
     /**
