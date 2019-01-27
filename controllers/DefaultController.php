@@ -19,14 +19,13 @@ class DefaultController extends Controller
 
     /**
      * Le constructeur de la classe Controller charge les datas passées par le client,
-     * Pour charger le security middleware, le contrôleur concret invoque la methode
+     * Pour charger le security middleware, le contrôleur parent invoque la methode
      * @see \BWB\Framework\mvc\Controller::securityLoader() 
-     * pour charger la couche securité.
+     * pour charger la couche securité afin de l'injecter dans l'objet response gerant l'affichage.
      */
     function __construct()
     {
         parent::__construct();
-        $this->securityLoader();
     }
 
     /**

@@ -81,7 +81,9 @@ abstract class Controller {
         $this->get = $_GET;
         $this->post = $_POST;
         parse_str(file_get_contents("php://input"), $this->put);
+        $this->securityLoader();
         $this->response = new Response($this->security);
+        $this->request = new Request();
     }
 
     /**
