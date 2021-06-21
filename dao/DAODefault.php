@@ -1,6 +1,8 @@
 <?php
 namespace BWB\Framework\mvc\dao;
+
 use BWB\Framework\mvc\DAO;
+use PDO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,6 +25,12 @@ class DAODefault extends DAO{
     }
 
     public function getAll() {
+        return $this->getPdo()
+        ->query(
+            "SELECT *
+            FROM employee"
+            )
+            ->fetchAll(PDO::FETCH_ASSOC);
         
     }
 
