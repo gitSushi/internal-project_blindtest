@@ -1,4 +1,5 @@
 <?php
+
 namespace BWB\Framework\mvc;
 
 use PDO;
@@ -12,7 +13,8 @@ use PDO;
  *
  * @author beweb-loic
  */
-abstract class DAO implements CRUDInterface, RepositoryInterface{
+abstract class DAO implements CRUDInterface, RepositoryInterface
+{
     /**
      * Cette propriété est une variable partagée entre toutes les instances
      * DAO ce qui evitera d'avoir plusieurs objets PDO tentant d'acceder 
@@ -20,31 +22,34 @@ abstract class DAO implements CRUDInterface, RepositoryInterface{
      * Elle est donc privée avec un getter protected
      * @var PDO 
      */
-    static private $pdo;  
-    
+    static private $pdo;
+
     /**
      * Tous les objets DAO doivent avoir access à l'objet PDO, 
      * L'instanciation du premier objet, initialise le PDO avec les données
      * du fichier database.json
      * 
      */
-    function __construct() {
+    function __construct()
+    {
         $DS = DIRECTORY_SEPARATOR;
         $directory = explode($DS, __DIR__);
-        unset($directory[count($directory)-1]);
+        unset($directory[count($directory) - 1]);
         $root = implode($DS, $directory);
-        if(is_null(DAO::$pdo)){
-            $config = json_decode(file_get_contents($root . $DS . "config". $DS ."database.json"), true);
-            DAO::$pdo = new PDO(
-                    $config['driver'] . ":"
+        if (is_null(DAO::$pdo)) {
+            $config = json_decode(file_get_contents($root . $DS . "config" . $DS . "database.json"), true);
+            DAO::$pdo = new \PDO(
+                $config['driver'] . ":"
                     . "host=" . $config['host']
-                    . ((empty($config['port'])) ? $config['port'] : (";port=" . $config['port']) )
+                    . ((empty($config['port'])) ? $config['port'] : (";port=" . $config['port']))
                     . ";dbname=" . $config['dbname']
-                    . ";charset=utf8", $config['username'], $config['password']
+                    . ";charset=utf8",
+                $config['username'],
+                $config['password']
             );
-        }       
+        }
     }
-    
+
     /**
      * 
      * Ici l'accesseur est protected car l'objet PDO doit être accessible 
@@ -53,8 +58,8 @@ abstract class DAO implements CRUDInterface, RepositoryInterface{
      *  
      * @return DAO l'objet pdo stocké en variable de classe. 
      */
-    protected function getPdo() : PDO{
+    protected function getPdo(): PDO
+    {
         return DAO::$pdo;
     }
-
 }
