@@ -1,5 +1,6 @@
 {
     "/": "DefaultController:getDefault",
+    "/tests/(:)":"TestDetail:getByValue",
     "/test": "DefaultController:test",
     "/login": "DefaultController:login",
     "/logout": "DefaultController:logout",
