@@ -57,7 +57,7 @@
                 <div class="field is-flex-grow-5">
                     <label class="label">Description</label>
                     <div class="control">
-                        <textarea class="textarea is-medium" placeholder="Textarea" required></textarea>
+                        <textarea class="textarea is-medium" placeholder="Description" required></textarea>
                     </div>
                     <p class="help is-warning">Champs requis</p>
                 </div>

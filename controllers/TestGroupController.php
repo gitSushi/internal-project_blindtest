@@ -5,6 +5,7 @@ namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAODefault;
 use BWB\Framework\mvc\dao\DAOProducts;
+use BWB\Framework\mvc\dao\DAOTestGroup;
 use BWB\Framework\mvc\models\DefaultModel;
 use BWB\Framework\mvc\models\TestModel;
 use Exception;
@@ -173,5 +174,10 @@ class TestGroupController extends Controller
     public function testTestGroup()
     {
         $this->response->render("testGroupView", ["products" => (new DAOProducts())->getAll()]);
+    }
+
+    public function addTest()
+    {
+        $this->response->render("addTestView", ["testGroup" => (new DAOTestGroup())->retrieve(5)]);
     }
 }
