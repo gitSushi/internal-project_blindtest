@@ -51,8 +51,7 @@ class DefaultController extends Controller
     public function login()
     {
         $this->security->generateToken(new DefaultModel());
-        // change $_SERVER['SERVER_NAME'] for $_SERVER['HTTP_HOST']
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
+        header("Location: http://" .$_SERVER['HTPP_HOST'] . "/token");
     }
 
     /**
@@ -175,13 +174,6 @@ class DefaultController extends Controller
 
     public function getEmployee()
     {
-<<<<<<< HEAD
-        // var_dump(phpinfo());
         $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
     }
 }
-=======
-        $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
-    }
-}
->>>>>>> origin/products
