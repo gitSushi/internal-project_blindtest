@@ -171,10 +171,4 @@ class TestDetail extends Controller
             "toto" => "tata"
         ));
     }
-
-    public function testTestGroup()
-    {
-        $this->response->render("test", ["tests" => (new DAOTestDetail())->getAll()]);
-
-    }
 }

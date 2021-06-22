@@ -12,7 +12,7 @@ use BWB\Framework\mvc\UserInterface;
  *
  * @author loic
  */
-class MinProduct {
+class ExtendedProduct {
     public function getSerialNumber() {
         return $this->serial_number;
     }

@@ -21,9 +21,9 @@ class DAOTestDetail extends DAO
         
     }
 
-    public function getAllBy($filter)
+    public function getAllBy($value)
     {
-        return $this->getPdo()->query("SELECT * FROM test WHERE id = $filter")->fetchAll(PDO::FETCH_ASSOC);
+        return $this->getPdo()->query("SELECT * FROM test WHERE id = $value")->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function retrieve($id)
