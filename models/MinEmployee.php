@@ -15,7 +15,3 @@ class MinEmployee {
         return $this->reference_employee = $reference_employee;
     }
 }
-<<<<<<< HEAD
-/*commit
-=======
->>>>>>> detail-test
