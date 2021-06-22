@@ -4,6 +4,7 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAODefault;
+use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\models\DefaultModel;
 use BWB\Framework\mvc\models\TestModel;
 use Exception;
@@ -15,7 +16,7 @@ use Exception;
  *
  * @author loic
  */
-class DefaultController extends Controller
+class ProductsController extends Controller
 {
 
     /**
@@ -36,7 +37,6 @@ class DefaultController extends Controller
      */
     public function getDefault()
     {
-        // var_dump($_SERVER);
         $this->response->render("default");
     }
 
@@ -51,8 +51,7 @@ class DefaultController extends Controller
     public function login()
     {
         $this->security->generateToken(new DefaultModel());
-        // change $_SERVER['SERVER_NAME'] for $_SERVER['HTTP_HOST']
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
+        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
     }
 
     /**
@@ -66,7 +65,7 @@ class DefaultController extends Controller
     public function logout()
     {
         $this->security->deactivate();
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
+        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
     }
 
     /**
@@ -164,6 +163,7 @@ class DefaultController extends Controller
     public function uploadFiles()
     {
         var_dump($_FILES);
+
     }
 
     public function getJSON()
@@ -173,15 +173,8 @@ class DefaultController extends Controller
         ));
     }
 
-    public function getEmployee()
+    public function getProducts()
     {
-<<<<<<< HEAD
-        // var_dump(phpinfo());
-        $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
+        $this->render("product", ["products" => (new DAOProducts())->getAll()]);
     }
 }
-=======
-        $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
-    }
-}
->>>>>>> origin/products

@@ -4,7 +4,6 @@ namespace BWB\Framework\mvc\dao;
 
 use BWB\Framework\mvc\DAO;
 use PDO;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
