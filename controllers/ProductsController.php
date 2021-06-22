@@ -4,6 +4,7 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAODefault;
+use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\models\DefaultModel;
 use BWB\Framework\mvc\models\TestModel;
 use Exception;
@@ -15,7 +16,7 @@ use Exception;
  *
  * @author loic
  */
-class DefaultController extends Controller
+class ProductsController extends Controller
 {
 
     /**
@@ -172,8 +173,8 @@ class DefaultController extends Controller
         ));
     }
 
-    public function getEmployee()
+    public function getProducts()
     {
-        $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
+        $this->render("product", ["products" => (new DAOProducts())->getAll()]);
     }
 }
