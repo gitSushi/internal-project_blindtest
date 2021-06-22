@@ -1,6 +1,6 @@
 {
     "driver" : "mysql",
-    "host" : "localhost",
+    "host" : "172.17.0.1",
     "port" : "3333",
     "dbname" : "testdb",
     "username" : "root",

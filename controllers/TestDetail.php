@@ -143,7 +143,7 @@ class TestDetail extends Controller
      */
     public function getByValue($value)
     {
-        echo "valeur passée dans l'uri : " . $value;
+        // echo "valeur passée dans l'uri : " . $value;
         $this->response->render("test", ["tests" => (new DAOTestDetail())->getAllBy($value)]);
     }
 
