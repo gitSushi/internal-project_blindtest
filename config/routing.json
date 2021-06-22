@@ -1,6 +1,7 @@
 {
     "/": "DefaultController:getDefault",
     "/products": "ProductsController:getProducts",
+    "/tests/(:)":"TestDetail:getByValue",
     "/test": "DefaultController:test",
     "/login": "DefaultController:login",
     "/logout": "DefaultController:logout",
