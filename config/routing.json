@@ -18,5 +18,6 @@
     "/files/upload":{
         "POST": "DefaultController:uploadFiles"
     },
-    "/employee": "DefaultController:getEmployee"
+    "/employee": "DefaultController:getEmployee",
+    "/test/testgroup": "TestGroupController:testTestGroup"
 }
