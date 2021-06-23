@@ -175,13 +175,7 @@ class DefaultController extends Controller
 
     public function getEmployee()
     {
-<<<<<<< HEAD
         // var_dump(phpinfo());
         $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
     }
 }
-=======
-        $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
-    }
-}
->>>>>>> origin/products

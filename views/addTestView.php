@@ -20,12 +20,13 @@
         <nav class="panel">
             <p class="panel-heading">
                 <?= $testGroup["name"] ?>
+                <input hidden id="testGroupId" value="<?= $testGroup["id"] ?>" />
             </p>
             <div class="panel-block">
                 <div class="field is-flex-grow-5">
                     <label class="label">Nom du tests *</label>
                     <div class="control has-icons-left has-icons-right">
-                        <input class="input is-success is-fullwidth" type="text" placeholder="Nom du test" required>
+                        <input id="testName" class="input is-success is-fullwidth" type="text" placeholder="Nom du test">
                     </div>
                 </div>
             </div>
@@ -33,7 +34,7 @@
                 <div class="field is-flex-grow-5">
                     <label class="label">Description *</label>
                     <div class="control">
-                        <textarea class="textarea is-medium" rows="2" placeholder="Description" required></textarea>
+                        <textarea id="description" class="textarea is-medium" rows="2" placeholder="Description"></textarea>
                     </div>
                 </div>
             </div>
@@ -43,7 +44,7 @@
                         <div class="field">
                             <label class="label">Valeur minimum *</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success is-fullwidth" type="text" placeholder="Valeur minimum" required>
+                                <input id="minVal" class="input is-success is-fullwidth" type="text" placeholder="Valeur minimum">
                             </div>
                         </div>
                     </div>
@@ -51,7 +52,7 @@
                         <div class="field">
                             <label class="label">Valeur maximum *</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success is-fullwidth" type="text" placeholder="Valeur maximum" required>
+                                <input id="maxVal" class="input is-success is-fullwidth" type="text" placeholder="Valeur maximum">
                             </div>
                         </div>
                     </div>
@@ -59,7 +60,7 @@
                         <div class="field">
                             <label class="label">Résultat *</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input is-success is-fullwidth" type="text" placeholder="Résultat" required>
+                                <input id="testResult" class="input is-success is-fullwidth" type="text" placeholder="Résultat">
                             </div>
                         </div>
                     </div>
@@ -78,14 +79,18 @@
                     <p class="level-item">
                     <div class="field is-grouped is-grouped-right mt-4 mr-4">
                         <div class="control">
-                            <button class="button is-link">Ajout du test</button>
+                            <button id="btnAddTest" class="button is-link">Ajout du test</button>
                         </div>
                     </div>
                     </p>
                 </div>
             </nav>
         </nav>
+
+        <div id="tests"></div>
     </main>
+
+    <script src="../assets/js/addTest.js"></script>
 </body>
 
 </html>

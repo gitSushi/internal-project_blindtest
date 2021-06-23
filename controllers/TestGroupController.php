@@ -8,6 +8,7 @@ use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\dao\DAOTestGroup;
 use BWB\Framework\mvc\models\DefaultModel;
 use BWB\Framework\mvc\models\TestModel;
+use DateTime;
 use Exception;
 
 /**
@@ -171,13 +172,69 @@ class TestGroupController extends Controller
         ));
     }
 
-    public function testTestGroup()
+    public function testGroupForm()
     {
         $this->response->render("testGroupView", ["products" => (new DAOProducts())->getAll()]);
     }
 
-    public function addTest()
+    public function testGroupCreate()
+    {
+        $productChoice = explode("-", $this->inputPost()["product-choice"]);
+        // var_dump($productChoice);
+        $productId = $productChoice[0];
+
+        // /!\ STILL ISSUES WITH $productId /!\
+        // $productId = $this->inputPost()["product-id"];
+        // var_dump($productId);
+
+        $name = $this->inputPost()["test-group-name"];
+        $description = $this->inputPost()["description"];
+        $last_date_tested = (new DateTime())->format("Y-m-d");
+
+        $daoTestGroup = new DAOTestGroup();
+
+        if ($daoTestGroup->create([$name, $description, $last_date_tested])) {
+            $lastId = $daoTestGroup->getLastGroupCreated()["MAX(id)"];
+
+            // /!\ HERE employee_id IS HARD-CODED
+            // NEEDS TO BE CHANGED OTHERWISE #2 IS CARRYING THE COMPANY /!\
+            $daoTestGroup->createEmployeeTestGroup(2, $lastId);
+            $daoTestGroup->createTestGroupProduct($lastId, $productId);
+
+            $this->response->render("addTestView", ["testGroup" => $daoTestGroup->retrieve($lastId)]);
+        }
+    }
+
+    public function tempView()
     {
         $this->response->render("addTestView", ["testGroup" => (new DAOTestGroup())->retrieve(5)]);
+    }
+
+    public function addTest()
+    {
+        // INSERT INTO un test
+        // echo les datas enregistrées pour les afficher
+        $sendData = json_decode(file_get_contents("php://input"), true);
+
+        // ADD CODE HERE -> INSERT INTO test SELECT id INSERT INTO test-test_group
+        $daoTestGroup = new DAOTestGroup();
+
+        // if ($daoTestGroup->createSingleTest($sendData["testName"], $sendData["description"], $sendData["minVal"], $sendData["maxVal"])) {
+        //     $lastTest = $daoTestGroup->getLastTestCreated();
+
+        //     $result = intval($sendData["testResult"]);
+        //     $min = intval($sendData["minVal"]);
+        //     $max = intval($sendData["maxVal"]);
+        //     $percentage = $result / ($max - $min);
+        //     $is_test_passed = $percentage >= 0.8 ? 1 : 0;
+
+        //     if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTest->geId(), $percentage, $is_test_passed)) {
+        //         // $returnedDatas = ["testName" => $lastTest["name"], "description" => $lastTest["description"], "minVal" => $lastTest["minimum_value"], "maxVal" => $lastTest["maximum_value"], "testResult" => $percentage];
+
+        //         echo json_encode($lastTest);
+        //     }
+        // }
+
+        echo json_encode(["testName" => $sendData["testName"], "description" => "couillon", "minVal" => "merdeux", "maxVal" => "prude", "testResult" => "sac-à-dos"]);
     }
 }

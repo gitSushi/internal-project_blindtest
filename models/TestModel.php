@@ -13,24 +13,35 @@ namespace BWB\Framework\mvc\models;
  *
  * @author loic
  */
-class TestModel {
-    private $nom,$prenom;
-    
-    function getNom() {
-        return $this->nom;
+class TestModel
+{
+    private $id, $name, $description, $minimum_value, $maximum_value;
+    public function getId()
+    {
+        return $this->id;
     }
-
-    function getPrenom() {
-        return $this->prenom;
+    public function getName()
+    {
+        return $this->name;
     }
-
-    function setNom($nom) {
-        $this->nom = $nom;
+    public function getDescription()
+    {
+        return $this->description;
     }
-
-    function setPrenom($prenom) {
-        $this->prenom = $prenom;
+    public function getMinimumValue()
+    {
+        return $this->minimum_value;
     }
-
-    
+    public function getMaximumValue()
+    {
+        return $this->maximum_value;
+    }
+    public function getPercentage()
+    {
+        return $this->percentage;
+    }
+    // public function getIsTestPassed()
+    // {
+    //     return $this->is_test_passed;
+    // }
 }

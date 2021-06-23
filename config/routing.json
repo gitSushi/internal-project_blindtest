@@ -20,6 +20,8 @@
         "POST": "DefaultController:uploadFiles"
     },
     "/employee": "DefaultController:getEmployee",
-    "/test/testgroup": "TestGroupController:testTestGroup",
-    "/test/addtest": "TestGroupController:addTest"
+    "/testgroup/form": "TestGroupController:testGroupForm",
+    "/testgroup/create": "TestGroupController:testGroupCreate",
+    "/test/addtest": "TestGroupController:addTest",
+    "/testtempview": "TestGroupController:tempView"
 }
