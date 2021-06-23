@@ -21,5 +21,7 @@
     },
     "/employee": "DefaultController:getEmployee",
     "/test/testgroup": "TestGroupController:testTestGroup",
-    "/test/addtest": "TestGroupController:addTest"
+    "/test/addtest": "TestGroupController:addTest",
+    "/history": "TestController:getTests",
+    "/menu": "TestController:showMenu"
 }

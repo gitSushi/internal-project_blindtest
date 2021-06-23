@@ -3,7 +3,6 @@
 namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
-use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\models\DefaultModel;
 use BWB\Framework\mvc\models\TestModel;
 use Exception;
@@ -15,7 +14,7 @@ use Exception;
  *
  * @author loic
  */
-class ProductsController extends Controller
+class TestController extends Controller
 {
 
     /**
@@ -36,6 +35,7 @@ class ProductsController extends Controller
      */
     public function getDefault()
     {
+        // var_dump($_SERVER);
         $this->response->render("default");
     }
 
@@ -50,7 +50,7 @@ class ProductsController extends Controller
     public function login()
     {
         $this->security->generateToken(new DefaultModel());
-        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
+        header("Location: http://" .$_SERVER['HTPP_HOST'] . "/token");
     }
 
     /**
@@ -64,7 +64,7 @@ class ProductsController extends Controller
     public function logout()
     {
         $this->security->deactivate();
-        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
     }
 
     /**
@@ -162,7 +162,6 @@ class ProductsController extends Controller
     public function uploadFiles()
     {
         var_dump($_FILES);
-
     }
 
     public function getJSON()
@@ -172,8 +171,18 @@ class ProductsController extends Controller
         ));
     }
 
-    public function getProducts()
+    public function getTests()
     {
-        $this->render("product", ["products" => (new DAOProducts())->getAll()]);
+        //nom du groupe, reference employee, nom du produit, has product passed test
+        $datas = [
+        ['nom du groupe' => 'la bite à dudule' , 'reference employee' => '124' , 'nom du produit' => 'vibro pour Jo' , 'condition' => 'true'] ,
+        ['nom du groupe' => 'gourde' , 'reference employee' => '666' , 'nom du produit' => 'vibro pour Jo' , 'condition' => 'false'] ,
+        ['nom du groupe' => 'chaussettes' , 'reference employee' => '7' , 'nom du produit' => 'poney magique' , 'condition' => 'true']
+    ];
+        $this->render("testHistoryView", $datas);
+    }
+
+    public function showMenu(){
+        $this->render("menu");
     }
 }
