@@ -14,7 +14,7 @@ namespace BWB\Framework\mvc\models;
  * @author loic
  */
 class TestModel {
-    private $id, $name, $description, $minimum_value, $maximum_value;    
+    private $id, $name, $testname, $description, $minimum_value, $maximum_value, $percentage, $is_test_passed, $last_date_tested, $reference_employee;    
     public function getId(){
         return $this->id;
     }
@@ -30,11 +30,19 @@ class TestModel {
     public function getMaximumValue(){
         return $this->maximum_value;
     }
-    // public function getPercentage(){
-    //     return $this->percentage;
-    // }
-    // public function getIsTestPassed(){
-    //     return $this->is_test_passed;
-    // }
-
+    public function getPercentage(){
+        return $this->percentage;
+    }
+    public function getIsTestPassed(){
+        return $this->is_test_passed;
+    }
+    public function getLastDateTested(){
+        return $this->last_date_tested;
+    }
+    public function getReferenceEmployee(){
+        return $this->reference_employee;
+    }
+    public function getNameTest(){
+        return $this->testname;
+    }
 }
