@@ -43,7 +43,9 @@ document.querySelector("#btnAddTest").addEventListener("click", event => {
 
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
-            console.log(xhr.response);
+            // console.log(xhr.response);
+
+            // ADD -> CLEARING THE FORM'S FIELDS
 
             const article = document.createElement("article");
             article.classList.add("message");

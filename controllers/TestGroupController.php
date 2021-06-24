@@ -3,16 +3,13 @@
 namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
-use BWB\Framework\mvc\dao\DAODefault;
 use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\dao\DAOTestGroup;
-use BWB\Framework\mvc\models\DefaultModel;
-use BWB\Framework\mvc\models\TestModel;
 use DateTime;
 use Exception;
 
 /**
- *
+ * Le contrôleur pour les tests (groupe de tests et test unique)
  */
 class TestGroupController extends Controller
 {
@@ -29,163 +26,30 @@ class TestGroupController extends Controller
     }
 
     /**
-     * Retourne la vue default.php qui se trouve dans le dossier views.
-     * 
-     * @link / methode invoquée lors d'une requête à la racine de l'application
+     * Récupère la liste de produits dont a besoin
+     * l'affichage de la création d'un groupe de tests
      */
-    public function getDefault()
-    {
-        // var_dump($_SERVER);
-        $this->response->render("default");
-    }
-
-    /**
-     * Simule un utilisateur qui se loggue.
-     * On utilise l'objet {@see DefaultModel} qui retourne des valeurs par defaut
-     * pour la generation du token. 
-     * 
-     * @link /login URI definie dans le fichier config/routing.json     * 
-     * 
-     */
-    public function login()
-    {
-        $this->security->generateToken(new DefaultModel());
-        // change $_SERVER['SERVER_NAME'] for $_SERVER['HTTP_HOST']
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
-    }
-
-    /**
-     * Simule un utilisateur qui se deconnecte.
-     * La metode effectue une redirection 
-     * 
-     * 
-     * @link /logout URI definie dans le fichier config/routing.json  
-     * 
-     */
-    public function logout()
-    {
-        $this->security->deactivate();
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
-    }
-
-    /**
-     * Cette methode simule la verification du client
-     * Affichage des informations du token pour s'assurer de l'identité. 
-     *  
-     * A tester apres s'etre connecté et a pres s'etre déconnecté afin de voir le comportement.
-     * 
-     * @link /token URI definie dans le fichier config/routing.json     * 
-     * 
-     */
-    public function token()
-    {
-        var_dump($this->security->acceptConnexion());
-    }
-
-    /* Les methodes suivantes correspondent aux URI de test qui gèrent les verbes HTTP */
-
-    /** 
-     * Exemple d'utilisation avec la superglobale $_GET
-     * 
-     * @see Controller::inputGet() retourne la superglobale $_GET
-     * 
-     * @example /api/default/?test=petitMessage&key=valeur2 avec cette URI la methode retourne un tableau associatif correspondant aux données passées en arguments à l'URL
-     */
-    public function getDatasFromGET()
-    {
-        var_dump($this->inputGet());
-    }
-
-    /** 
-     * Exemple d'utilisation avec la superglobale $_POST
-     * 
-     * @see Controller::inputPost() retourne la superglobale $_POST
-     * 
-     * @example /api/default ajouter dans le corps de la requete des données au format : x-www-form-urlencoded
-     */
-    public function getDatasFromPOST()
-    {
-        var_dump($this->inputPost());
-    }
-
-    /** 
-     * Exemple d'utilisation avec la mise a jour d'une ressource via la methode PUT 
-     * 
-     * @see Controller::inputPut() retourne les données sous la forme d'un tableau associatif 
-     * 
-     * @example /api/default ajouter dans le corps de la requete des données au format : x-www-form-urlencoded
-     */
-    public function getDatasFromPUT()
-    {
-        var_dump($this->inputPut());
-    }
-
-    /** 
-     * Ici la methode sera invoquée lors d'une requête HTTP dont le verbe est DELETE. 
-     * L'exemple retourne les données des propriétés put, post et get. 
-     * 
-     * N'hésitez pas tester !
-     */
-    public function delete()
-    {
-        var_dump($this->inputPut());
-        var_dump($this->inputPost());
-        var_dump($this->inputGet());
-    }
-
-    /**
-     * La methode affiche les données variables de l'URI comme definies dans le fichier routing.json. 
-     * 
-     * 
-     * @param type $value correspond a la partie variable de l'URI dont le pattern est : (:).
-     * 
-     * @example /api/default/bonjour retournera bonjour. 
-     * @example /api/default/32 retournera 32. 
-     */
-    public function getByValue($value)
-    {
-        echo "valeur passée dans l'uri : " . $value;
-    }
-
-
-
-    public function test()
-    {
-        $r = new \BWB\Framework\mvc\Request();
-        var_dump($r->post(TestModel::class));
-        var_dump($r->put(TestModel::class));
-    }
-
-    public function getViewFiles()
-    {
-        $this->render("form-upload");
-    }
-    public function uploadFiles()
-    {
-        var_dump($_FILES);
-    }
-
-    public function getJSON()
-    {
-        $this->response->sendJSON(array(
-            "toto" => "tata"
-        ));
-    }
-
     public function testGroupForm()
     {
         $this->response->render("testGroupView", ["products" => (new DAOProducts())->getAll()]);
     }
 
+    /**
+     * Récupère les données du formulaire de création d'un groupe de tests
+     * avec la méthode inputPost (= $_POST)
+     * ajoute à la BdD le groupe de test
+     *  et met à jour les tables relationnelles employee-test_group et test-group_product
+     */
     public function testGroupCreate()
     {
-        $productChoice = explode("-", $this->inputPost()["product-choice"]);
-        // var_dump($productChoice);
-        $productId = $productChoice[0];
-
         // /!\ STILL ISSUES WITH $productId /!\
         // $productId = $this->inputPost()["product-id"];
         // var_dump($productId);
+
+        // NOT IDEAL SOLUTION WAS TO LEAVE THE ID IN THE VALUE
+        // THIS IS THE EXTRACTION
+        $productChoice = explode("-", $this->inputPost()["product-choice"]);
+        $productId = $productChoice[0];
 
         $name = $this->inputPost()["test-group-name"];
         $description = $this->inputPost()["description"];
@@ -205,11 +69,13 @@ class TestGroupController extends Controller
         }
     }
 
-    public function tempView()
-    {
-        $this->response->render("addTestView", ["testGroup" => (new DAOTestGroup())->retrieve(5)]);
-    }
-
+    /**
+     * Ajoute un test unique dans le groupe de test.
+     * 
+     * Récupère (file_get_contents) les données envoyées par l'objet XMLHttpRequest
+     * Les ajoute à la BdD et met à jour la table relationnelle test-test_group
+     * renvoie (echo) les données du test en json qui seront utilisées pour l'affichage
+     */
     public function addTest()
     {
         $sendData = json_decode(file_get_contents("php://input"), true);
@@ -223,13 +89,14 @@ class TestGroupController extends Controller
             $result = intval($sendData["testResult"]);
             $min = intval($sendData["minVal"]);
             $max = intval($sendData["maxVal"]);
-            $percentage = $result / ($max - $min);
+            // Normalize data to range 0 to 1
+            $percentage = ($result - $min) / ($max - $min);
             $is_test_passed = $percentage >= 0.8 ? 1 : 0;
 
             $lastTest = $daoTestGroup->getLastTestCreated();
 
-            if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTest["id"], $percentage, $is_test_passed)) {
-                $returnedDatas = ["testName" => $lastTest["name"], "description" => $lastTest["description"], "minVal" => $lastTest["minimum_value"], "maxVal" => $lastTest["maximum_value"], "testResult" => $percentage];
+            if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTest->getId(), $percentage, $is_test_passed)) {
+                $returnedDatas = ["testName" => $lastTest->getName(), "description" => $lastTest->getDescription(), "minVal" => $lastTest->getMinimumValue(), "maxVal" => $lastTest->getMaximumValue(), "testResult" => $lastTest->getPercentage()];
 
                 echo json_encode($returnedDatas);
             }

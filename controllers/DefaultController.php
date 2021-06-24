@@ -51,7 +51,7 @@ class DefaultController extends Controller
     public function login()
     {
         $this->security->generateToken(new DefaultModel());
-        header("Location: http://" . $_SERVER['HTPP_HOST'] . "/token");
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
     }
 
     /**

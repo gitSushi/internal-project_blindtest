@@ -3,6 +3,7 @@
 namespace BWB\Framework\mvc\dao;
 
 use BWB\Framework\mvc\DAO;
+
 use PDO;
 
 /*
@@ -60,7 +61,7 @@ class DAOTestGroup extends DAO
                 FROM test_group
                 WHERE id = $id"
             )
-            ->fetch(PDO::FETCH_ASSOC);
+            ->fetchObject('\\BWB\\Framework\\mvc\\models\\MinTestGroup');
     }
 
     public function update($array)
@@ -125,14 +126,13 @@ class DAOTestGroup extends DAO
 
     public function createSingleTest($id, $name, $description, $minimum_value, $maximum_value)
     {
-        // var_dump($name, $description, $minimum_value, $maximum_value);
         $statement = $this
             ->getPdo()
             ->prepare(
                 "INSERT INTO testdb.test (id, name, description, minimum_value, maximum_value)
                 VALUES (:id, :name, :description, :minimum_value, :maximum_value)"
             );
-        // var_dump($statement);
+
         $datas = [
             "id" => $id,
             "name" => $name,
@@ -140,7 +140,7 @@ class DAOTestGroup extends DAO
             "minimum_value" => $minimum_value,
             "maximum_value" => $maximum_value
         ];
-        // var_dump($datas);
+
         return $statement->execute($datas);
     }
 
@@ -154,7 +154,7 @@ class DAOTestGroup extends DAO
                 ORDER BY id
                 DESC LIMIT 0, 1"
             )
-            ->fetch(PDO::FETCH_ASSOC);
+            ->fetchObject("\\BWB\\Framework\\mvc\\models\\TestModel");
     }
 
     public function createTestTestGroup($test_group_id, $test_id, $percentage, $is_test_passed)

@@ -3,6 +3,7 @@
 namespace BWB\Framework\mvc\dao;
 
 use BWB\Framework\mvc\DAO;
+
 use PDO;
 
 class DAOProducts extends DAO
@@ -18,7 +19,13 @@ class DAOProducts extends DAO
 
     public function getAll()
     {
-        return $this->getPdo()->query("SELECT * FROM product")->fetchAll(PDO::FETCH_ASSOC);
+        return $this
+            ->getPdo()
+            ->query(
+                "SELECT *
+                FROM product"
+            )
+            ->fetchAll(PDO::FETCH_CLASS, "\\BWB\\Framework\\mvc\\models\\TestModel");
     }
 
     public function getAllBy($filter)

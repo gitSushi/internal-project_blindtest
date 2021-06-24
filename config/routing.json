@@ -23,6 +23,5 @@
     "/employee": "DefaultController:getEmployee",
     "/testgroup/form": "TestGroupController:testGroupForm",
     "/testgroup/create": "TestGroupController:testGroupCreate",
-    "/test/addtest": "TestGroupController:addTest",
-    "/testtempview": "TestGroupController:tempView"
+    "/test/addtest": "TestGroupController:addTest"
 }
