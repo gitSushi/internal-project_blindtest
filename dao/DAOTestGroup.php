@@ -112,22 +112,35 @@ class DAOTestGroup extends DAO
         return $statement->execute($datas);
     }
 
-    public function createSingleTest($name, $description, $minimum_value, $maximum_value)
+    public function getLastTestId()
     {
+        return $this
+            ->getPdo()
+            ->query(
+                "SELECT MAX(id)
+                FROM test"
+            )
+            ->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function createSingleTest($id, $name, $description, $minimum_value, $maximum_value)
+    {
+        // var_dump($name, $description, $minimum_value, $maximum_value);
         $statement = $this
             ->getPdo()
             ->prepare(
-                "INSERT INTO test (name, description, minimum_value, maximum_value)
-                VALUES (:name, :description, :minimum_value, :maximum_value)"
+                "INSERT INTO testdb.test (id, name, description, minimum_value, maximum_value)
+                VALUES (:id, :name, :description, :minimum_value, :maximum_value)"
             );
-
+        // var_dump($statement);
         $datas = [
+            "id" => $id,
             "name" => $name,
             "description" => $description,
             "minimum_value" => $minimum_value,
             "maximum_value" => $maximum_value
         ];
-
+        // var_dump($datas);
         return $statement->execute($datas);
     }
 
@@ -137,10 +150,11 @@ class DAOTestGroup extends DAO
             ->getPdo()
             ->query(
                 "SELECT *
-                FROM test
-                WHERE id = MAX(id)"
+                FROM testdb.test
+                ORDER BY id
+                DESC LIMIT 0, 1"
             )
-            ->fetchObject("TestModel");
+            ->fetch(PDO::FETCH_ASSOC);
     }
 
     public function createTestTestGroup($test_group_id, $test_id, $percentage, $is_test_passed)
@@ -148,7 +162,7 @@ class DAOTestGroup extends DAO
         $statement = $this
             ->getPdo()
             ->prepare(
-                "INSERT INTO `test` (test_group_id, test_id, percentage, is_test_passed)
+                "INSERT INTO `test-test_group` (test_group_id, test_id, percentage, is_test_passed)
                 VALUES (:test_group_id, :test_id, :percentage, :is_test_passed)"
             );
 

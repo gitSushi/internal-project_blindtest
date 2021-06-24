@@ -212,29 +212,27 @@ class TestGroupController extends Controller
 
     public function addTest()
     {
-        // INSERT INTO un test
-        // echo les datas enregistrées pour les afficher
         $sendData = json_decode(file_get_contents("php://input"), true);
 
-        // ADD CODE HERE -> INSERT INTO test SELECT id INSERT INTO test-test_group
         $daoTestGroup = new DAOTestGroup();
 
-        // if ($daoTestGroup->createSingleTest($sendData["testName"], $sendData["description"], $sendData["minVal"], $sendData["maxVal"])) {
-        //     $lastTest = $daoTestGroup->getLastTestCreated();
+        $lastTestId = $daoTestGroup->getLastTestId()["MAX(id)"] + 1;
 
-        //     $result = intval($sendData["testResult"]);
-        //     $min = intval($sendData["minVal"]);
-        //     $max = intval($sendData["maxVal"]);
-        //     $percentage = $result / ($max - $min);
-        //     $is_test_passed = $percentage >= 0.8 ? 1 : 0;
+        if ($daoTestGroup->createSingleTest($lastTestId, $sendData["testName"], $sendData["description"], $sendData["minVal"], $sendData["maxVal"])) {
 
-        //     if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTest->geId(), $percentage, $is_test_passed)) {
-        //         // $returnedDatas = ["testName" => $lastTest["name"], "description" => $lastTest["description"], "minVal" => $lastTest["minimum_value"], "maxVal" => $lastTest["maximum_value"], "testResult" => $percentage];
+            $result = intval($sendData["testResult"]);
+            $min = intval($sendData["minVal"]);
+            $max = intval($sendData["maxVal"]);
+            $percentage = $result / ($max - $min);
+            $is_test_passed = $percentage >= 0.8 ? 1 : 0;
 
-        //         echo json_encode($lastTest);
-        //     }
-        // }
+            $lastTest = $daoTestGroup->getLastTestCreated();
 
-        echo json_encode(["testName" => $sendData["testName"], "description" => "couillon", "minVal" => "merdeux", "maxVal" => "prude", "testResult" => "sac-à-dos"]);
+            if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTest["id"], $percentage, $is_test_passed)) {
+                $returnedDatas = ["testName" => $lastTest["name"], "description" => $lastTest["description"], "minVal" => $lastTest["minimum_value"], "maxVal" => $lastTest["maximum_value"], "testResult" => $percentage];
+
+                echo json_encode($returnedDatas);
+            }
+        }
     }
 }
