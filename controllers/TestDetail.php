@@ -4,18 +4,16 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAODefault;
+use BWB\Framework\mvc\dao\DAOProducts;
+use BWB\Framework\mvc\dao\DAOTestDetail;
 use BWB\Framework\mvc\models\DefaultModel;
 use BWB\Framework\mvc\models\TestModel;
 use Exception;
 
 /**
- * Ceci est un exemple de contrôleur 
- * il charge le security middleware dans le constructeur
- * 
  *
- * @author loic
  */
-class DefaultController extends Controller
+class TestDetail extends Controller
 {
 
     /**
@@ -51,7 +49,8 @@ class DefaultController extends Controller
     public function login()
     {
         $this->security->generateToken(new DefaultModel());
-        header("Location: http://" . $_SERVER['HTPP_HOST'] . "/token");
+        // change $_SERVER['SERVER_NAME'] for $_SERVER['HTTP_HOST']
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/token");
     }
 
     /**
@@ -144,7 +143,8 @@ class DefaultController extends Controller
      */
     public function getByValue($value)
     {
-        echo "valeur passée dans l'uri : " . $value;
+        // echo "valeur passée dans l'uri : " . $value;
+        $this->response->render("test", ["tests" => (new DAOTestDetail())->getAllBy($value)]);
     }
 
 
@@ -170,10 +170,5 @@ class DefaultController extends Controller
         $this->response->sendJSON(array(
             "toto" => "tata"
         ));
-    }
-
-    public function getEmployee()
-    {
-        $this->render("employee", ["employees" => (new DAODefault())->getAll()]);
     }
 }

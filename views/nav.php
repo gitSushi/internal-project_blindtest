@@ -1,28 +1,42 @@
-<!-- Main container -->
-<nav class="level">
-    <!-- Left side -->
-    <div class="level-left">
-        <div class="level-item">
-            <p class="subtitle is-3">
-                <span class="icon">
-                    <i class="fas fa-arrow-left"></i>
-                </span>
-            </p>
-        </div>
-        <div class="level-item">
-            <p class="title"><?= $navTitle ?></p>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- Right side -->
-    <div class="level-right">
-        <div class="level-item">
-            <p class="subtitle is-3">
-                <span class="icon">
-                    <i class="fas fa-user-cog"></i>
-                </span>
-            </p>
-        </div>
-        <p class="level-item"><strong>serial #</strong></p>
-    </div>
-</nav>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $navTitle ?></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+ <!-- Main container -->
+ <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+                <div class="level-item">
+                    <p class="subtitle is-3">
+                        <span class="icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="level-item">
+                    <p class="title"><?= $navTitle ?></p>
+                </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+                <div class="level-item">
+                    <p class="subtitle is-3">
+                        <span class="icon">
+                            <i class="fas fa-user-cog"></i>
+                        </span>
+                    </p>
+                </div>
+                <p class="level-item"><strong>serial #</strong></p>
+            </div>
+        </nav>
