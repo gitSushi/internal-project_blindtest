@@ -177,4 +177,8 @@ class ProductsController extends Controller
     {
         $this->render("product", ["products" => (new DAOProducts())->getAll()]);
     }
+
+    public function getGr($filter){
+        $this->render("product", ["products" => (new DAOProducts())->getAllBy($filter)]);
+    }
 }

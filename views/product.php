@@ -21,9 +21,10 @@
             <p id="display"></p>   
         </div>
     </nav>
+  
     <!--Tests JS-->
     <script>
-        // Au click du bouton l'id du produit est affiché en dessous
+        // Au click du bouton l'id du produit est affiché en dessous permet de récup l'id du produit
             var btn = document.getElementById("btn")
 
             const text = document.getElementById('text')
@@ -36,15 +37,23 @@
                         msg.innerHTML = "Aucun id à afficher."
                     } else {
                         msg.innerHTML = "Id = " + dl.options[index].id
+                         //Request
+                        var oReq = new XMLHttpRequest();
+                        oReq.responseType = "json";
+                        
+
+                        oReq.onload = reqListener();
+                        oReq.open("get", "/products/getGr/(" + dl.options[index].id + ")", true);
+                        oReq.send();
+
+                        function reqListener () {
+                            console.log(this.response);
+                        }
+                    //endreq
                     }
             }, false)
         //end récup prodId
-
-        //Affichage des tests correspondants
-      
-
-
-        //end affiche    
+       
     </script>
 </body>
 </html>

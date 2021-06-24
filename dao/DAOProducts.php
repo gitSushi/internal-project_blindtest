@@ -18,7 +18,7 @@ class DAOProducts extends DAO{
     }
 
     public function getAllBy($filter) {
-        
+        return $this->getPdo()->query("SELECT * FROM product JOIN `test-group_product` ON product.id = `test-group_product`.product_id WHERE product.id = $filter")->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function retrieve($id) {
