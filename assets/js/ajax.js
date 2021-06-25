@@ -22,9 +22,9 @@ function requete(idasked){
          if(this.readyState == 4 && this.status == 200){
              // msg.innerHTML += this.responseText 
              var datas = this.response.users
-             for(var i = 0;i<datas.length;i++){
-                 msg.innerHTML += "Bonjour je suis " + datas[i].nom + ". "
-             }
+            
+                 msg.innerHTML += "Bonjour je suis " + datas[idasked].nom + ". "
+             
              console.log(this.response);
          }else if(this.readyState == 4 && this.response == 404){
              alert("404")
