@@ -17,30 +17,34 @@
         $navTitle = "HISTORIQUE DE TESTS";
         include("views/nav.php");
         ?>
-<nav class="panel">
-    <div class="panel-block is-justify-content-center">
+            <div class="columns is-multiline">
+    <? foreach ($datas as $data): ?>
 
-    <?php
-    $t = "trouloulou";
-    foreach ($datas as $data){
-    ?>
-            <div class="column">
-                <div class="field">
-                    <!-- condition ? vrai : faux; -->
-                    <div class="box <?= $data['condition'] ? "is-success" : "is-danger" ?>">
-                        <label class="label"><?= $data['nom du groupe'] ?></label><br>
-                            <div class="box">
-                                <?= $data['reference employee'] ?>
-                                <?= $data['nom du produit'] ?>
-                            </div>
-                    </div>
-                </div>
-            </div>
-    <?php
-    }
-    ?>       
+    
+
+            
+            <div class="column is-half">
+        <div class="notification has-text-centered <?= $data["has_product_passed_test"] ? 'is-success' : 'is-danger' ?>">
+            <p> NOM DU GROUPE DE TESTS :</p>
+            <?= $data["name"] ?>
+    
+        <div class="box">
+            <p>RÉFÉRENCE EMPLOYÉ :</p>
+            <?= $data["reference_employee"] ?>
+
+            <br>
+
+            <p>NOM DU PRODUIT :</p>
+            <?= $data["pname"] ?>
+        </div>
+        </div>
+
+        </div>
+      
+     
+
+    <? endforeach; ?>
     </div>
-</nav>
 </body>
 
 </html>
