@@ -22,8 +22,9 @@
 
     
 
-            
+           
             <div class="column is-half">
+            <a href='http://localhost:1597/tests/<?= $data["id"]?>'>
         <div class="notification has-text-centered <?= $data["has_product_passed_test"] ? 'is-success' : 'is-danger' ?>">
             <p> NOM DU GROUPE DE TESTS :</p>
             <?= $data["name"] ?>
@@ -38,8 +39,9 @@
             <?= $data["pname"] ?>
         </div>
         </div>
-
+        </a>
         </div>
+       
       
      
 
