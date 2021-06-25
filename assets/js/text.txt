@@ -1,0 +1,16 @@
+{
+    "users":[
+        {
+            "nom": "titi",
+            "age": 34
+        },
+        {
+            "nom": "toto",
+            "age": 35
+        },
+        {
+            "nom": "tata",
+            "age": 36
+        }
+    ]
+}
