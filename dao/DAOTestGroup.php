@@ -19,6 +19,28 @@ use PDO;
  */
 class DAOTestGroup extends DAO
 {
+    /**
+     * Les fonctions provenants des interfaces
+     */
+    public function delete($id)
+    {
+    }
+
+    public function getAll()
+    {
+    }
+
+    public function getAllBy($filter)
+    {
+    }
+
+    public function update($array)
+    {
+    }
+
+    /**
+     * Ajoute un groupe de tests
+     */
     public function create($array)
     {
         $name = $array[0];
@@ -41,18 +63,9 @@ class DAOTestGroup extends DAO
         return $testGroup->execute($datas);
     }
 
-    public function delete($id)
-    {
-    }
-
-    public function getAll()
-    {
-    }
-
-    public function getAllBy($filter)
-    {
-    }
-
+    /**
+     * Récupère un groupe de tests par son identité
+     */
     public function retrieve($id)
     {
         return $this->getPdo()
@@ -64,10 +77,9 @@ class DAOTestGroup extends DAO
             ->fetchObject('\\BWB\\Framework\\mvc\\models\\MinTestGroup');
     }
 
-    public function update($array)
-    {
-    }
-
+    /**
+     * Récupère le dernier rang de test_group
+     */
     public function getLastGroupCreated()
     {
         return $this
@@ -79,6 +91,9 @@ class DAOTestGroup extends DAO
             ->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Met à jour la table relationnelle employee-test_group
+     */
     public function createEmployeeTestGroup($employee_id, $test_group_id)
     {
         $statement = $this
@@ -96,6 +111,9 @@ class DAOTestGroup extends DAO
         return $statement->execute($datas);
     }
 
+    /**
+     * Met à jour la table relationnelle test-group_product
+     */
     public function createTestGroupProduct($test_group_id, $product_id)
     {
         $statement = $this
@@ -113,6 +131,9 @@ class DAOTestGroup extends DAO
         return $statement->execute($datas);
     }
 
+    /**
+     * Récupère le dernier rang de test
+     */
     public function getLastTestId()
     {
         return $this
@@ -124,6 +145,9 @@ class DAOTestGroup extends DAO
             ->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Ajoute un test unique (cette table n'est pas auto-increment)
+     */
     public function createSingleTest($id, $name, $description, $minimum_value, $maximum_value)
     {
         $statement = $this
@@ -144,6 +168,9 @@ class DAOTestGroup extends DAO
         return $statement->execute($datas);
     }
 
+    /**
+     * Récupère le dernier test créé et l'assigne à l'instance de TestModel
+     */
     public function getLastTestCreated()
     {
         return $this
@@ -157,6 +184,9 @@ class DAOTestGroup extends DAO
             ->fetchObject("\\BWB\\Framework\\mvc\\models\\TestModel");
     }
 
+    /**
+     * Met à jour la table relationnelle test-test-group
+     */
     public function createTestTestGroup($test_group_id, $test_id, $percentage, $is_test_passed)
     {
         $statement = $this
