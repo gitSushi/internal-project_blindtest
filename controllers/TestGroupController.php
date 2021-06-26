@@ -11,7 +11,7 @@ use Exception;
 /**
  * Le contrôleur pour les tests (groupe de tests et test unique)
  */
-class TestGroupController extends Controller
+class TestGroupController extends SecurizedController
 {
 
     /**

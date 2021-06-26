@@ -3,8 +3,10 @@
     "/products": "ProductsController:getProducts",
     "/tests/(:)":"TestDetail:getByValue",
     "/test": "DefaultController:test",
-    "/login": "DefaultController:login",
-    "/logout": "DefaultController:logout",
+    "/callback": "AuthenticationController:callback",
+    "/signin": "AuthenticationController:signin",
+    "/logout": "AuthenticationController:logout",
+    "/signout": "DefaultController:logout",
     "/token": "DefaultController:token",
     "/json": "DefaultController:getJSON",
     "/api/default":{

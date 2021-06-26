@@ -40,5 +40,14 @@
                 </p>
             </div>
             <p class="level-item"><strong>serial #</strong></p>
+            <div class="level-item">
+                <p class="subtitle is-3">
+                    <a href="http://localhost:1597/logout">
+                        <span class="icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                    </a>
+                </p>
+            </div>
         </div>
     </nav>
