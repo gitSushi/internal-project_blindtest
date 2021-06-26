@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <title>Menu</title>
-</head>
-
 <body>
     <main class="container m-4">
         <?php
@@ -21,9 +8,9 @@
         <div class="columns is-multiline">
             <div class="column is-half has-text-centered py-8 px-6">
                 <div class="border">
-                    <a href="/history">
-                        <span class="icon is-size-1">
-                            <i class="fas fa-sort-alpha-down-alt"></i>
+                    <a class="inline-block" href="/history">
+                        <span class="icon mb-4 is-size-5">
+                            <i class="fas fa-sort-alpha-down-alt fa-3x"></i>
                         </span>
                         <p class="subtitle is-4">HISTORIQUE DE TESTS</p>
                     </a>
@@ -31,9 +18,9 @@
             </div>
             <div class="column is-half has-text-centered py-8 px-6">
                 <div class="border">
-                    <a href="/products">
-                        <span class="icon is-size-1">
-                            <i class="fas fa-sort-alpha-down"></i>
+                    <a class="inline-block" href="/products">
+                        <span class="icon mb-4 is-size-5">
+                            <i class="fas fa-sort-alpha-down fa-3x"></i>
                         </span>
                         <p class="subtitle is-4">LISTE DES PRODUITS</p>
                     </a>
@@ -44,9 +31,9 @@
         <div class="columns is-multiline">
             <div class="column is-half has-text-centered py-8 px-6">
                 <div class="border">
-                    <a href="/testgroup/form/">
-                        <span class="icon is-size-1">
-                            <i class="fas fa-edit"></i>
+                    <a class="inline-block" href="/testgroup/form">
+                        <span class="icon mb-4 is-size-5">
+                            <i class="fas fa-edit fa-3x"></i>
                         </span>
                         <p class="subtitle is-4">CRÉATION DE TESTS</p>
                     </a>
@@ -55,9 +42,9 @@
 
             <div class="column is-half has-text-centered py-8 px-6">
                 <div class="border">
-                    <a href="/logout">
-                        <span class="icon is-size-1">
-                            <i class="fas fa-sign-out-alt"></i>
+                    <a class="inline-block" href="/logout">
+                        <span class="icon mb-4 is-size-5">
+                            <i class="fas fa-sign-out-alt fa-3x"></i>
                         </span>
                         <p class="subtitle is-4">DÉCONNEXION</p>
                     </a>

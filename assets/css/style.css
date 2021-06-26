@@ -4,3 +4,6 @@
     padding: 3em;
 }
 
+.inline-block {
+    display: inline-block;
+}

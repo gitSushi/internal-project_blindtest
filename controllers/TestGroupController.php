@@ -6,7 +6,6 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\dao\DAOTestGroup;
 use DateTime;
-use Exception;
 
 /**
  * Le contrôleur pour les tests (groupe de tests et test unique)
