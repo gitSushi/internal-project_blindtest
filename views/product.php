@@ -1,10 +1,8 @@
 <?php 
         $navTitle = "Liste des produits";
         include("views/nav.php");
-
 ?>
     <!--Content-->
-
     <nav class="panel">
         <div class="panel-heading">
             <label for="productList">Entrez un nom de produit:</label>
@@ -16,13 +14,10 @@
             </datalist>
             <button type="submit" id="btn" class="button is-primary is-small">Choose</button> 
         </div>
-        <div class="panel-block">
-            <p id="msg"></p>
-            <p id="display"></p>   
+        <div class="panel-block columns is-multiline" id="display">
+                    <!--Ici les infos seront injectées dynamiquement grâce au script js-->
         </div>
     </nav>
-  
-    <!--Tests JS-->
-    <script src="../assets/js/ajax.js"></script>
+    <script src="../assets/js/ajaxProducts.js"></script>
 </body>
 </html>
