@@ -1,5 +1,8 @@
 <?php
+
 namespace BWB\Framework\mvc;
+
+use Exception;
 
 /**
  * Objet servant a retourner la reponse du contrôleur 
@@ -26,13 +29,13 @@ class Response
     final public function sendJSON($data)
     {
         header('Content-Type: application/json');
-        if(is_array($data)){
+        if (is_array($data)) {
             echo json_encode($data);
-        }elseif(is_string($data)){
+        } elseif (is_string($data)) {
             echo $data;
-        }elseif($data instanceof \JsonSerializable){
+        } elseif ($data instanceof \JsonSerializable) {
             echo json_encode($data->jsonSerialize());
-        }else{
+        } else {
             // doit lever une UnauthorizedTypeException 
             throw new Exception();
         }
@@ -47,7 +50,8 @@ class Response
      * 
      * @param int $code le code retour que le serveur doit renvoyer
      */
-    final public function status(int $code = 200){
+    final public function status(int $code = 200)
+    {
         http_response_code($code);
         return $this;
     }

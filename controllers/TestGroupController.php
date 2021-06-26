@@ -10,6 +10,7 @@ use Exception;
 
 /**
  * Le contrôleur pour les tests (groupe de tests et test unique)
+ * herite de SecurizedController (les tokens)
  */
 class TestGroupController extends SecurizedController
 {
@@ -102,5 +103,4 @@ class TestGroupController extends SecurizedController
             }
         }
     }
-    
 }

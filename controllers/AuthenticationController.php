@@ -7,12 +7,9 @@ use BWB\Framework\mvc\models\MSUserModel;
 use BWB\Framework\mvc\MicrosoftProvider;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
-use Exception;
 
 class AuthenticationController extends Controller
 {
-
-
     /**
      * Retourne la vue de login
      */

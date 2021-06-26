@@ -5,7 +5,7 @@ namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOTestHistory;
 
-class TestController extends Controller
+class TestController extends SecurizedController
 {
     function __construct()
     {
@@ -14,12 +14,11 @@ class TestController extends Controller
 
     public function getTests()
     {
-        $this->render("testHistoryView", ["datas" => (new DAOTestHistory())->getAll()]);  
+        $this->render("testHistoryView", ["datas" => (new DAOTestHistory())->getAll()]);
     }
-        
-    public function showMenu(){
-    $this->render("menu");
+
+    public function showMenu()
+    {
+        $this->render("menu");
     }
 }
-    
-
