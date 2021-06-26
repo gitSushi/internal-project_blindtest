@@ -1,17 +1,9 @@
 <?php
 
 namespace BWB\Framework\mvc\dao;
-// namespace BWB\Framework\mvc\Controllers;
 
 use BWB\Framework\mvc\DAO;
-// use DAOTest;
 use PDO;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of DAODefault
@@ -20,8 +12,15 @@ use PDO;
  */
 class DAOTestHistory extends DAO
 {
-    //put your code here
     public function create($array)
+    {
+    }
+
+    public function retrieve($id)
+    {
+    }
+
+    public function update($array)
     {
     }
 
@@ -56,21 +55,14 @@ class DAOTestHistory extends DAO
                     ON prod.id = gp.product_id
                     WHERE gp.test_group_id
                     IN (SELECT id
-                        FROM test_group)) AS prod
+                        FROM test_group)
+                    AND gp.has_product_passed_test IS NOT NULL) AS prod
                 ON prod.test_group_id = tg.id"
             )
             ->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllBy($filter)
-    {
-    }
-
-    public function retrieve($id)
-    {
-    }
-
-    public function update($array)
     {
     }
 }
