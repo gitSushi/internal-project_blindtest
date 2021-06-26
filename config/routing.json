@@ -2,6 +2,7 @@
     "/": "DefaultController:getDefault",
     "/products": "ProductsController:getProducts",
     "/tests/(:)":"TestDetail:getByValue",
+    "/products/get": "ProductsController:getGr",
     "/test": "DefaultController:test",
     "/callback": "AuthenticationController:callback",
     "/signin": "AuthenticationController:signin",

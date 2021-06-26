@@ -93,38 +93,47 @@ include("views/nav.php");
 
     //Pour les graphs détaillé je les génére à la volée en me basant sur le nombre de test passé sur ce groupe
 
-    backgroundColor = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'
-    ]
+  
 
-
-    for (let i = 0; i < arrTests.length; i++) {
-        //Préparation des élements
         let canvas = document.createElement("canvas");
-        canvas.setAttribute("id", i);
+        canvas.setAttribute("id","canva")
         newChart.appendChild(canvas);
         //Charts
-        var ctx2 = document.getElementById(i).getContext("2d");
-        let myChart = new Chart(ctx2, {
+        var ctx2 = document.getElementById("canva").getContext("2d");
+        let myChart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: "test",
+                labels: arrTests,
                 datasets: [{
                     label: arrTests,
                     data: arrValues,
-                    backgroundColor: backgroundColor[i],
-                    borderColor: backgroundColor[i],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)', 
+                        'rgba(153, 102, 255, 0.2)', 
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor:  [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)', 
+                        'rgba(153, 102, 255, 0.2)', 
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: false
+                        beginAtZero: true
                     }
                 }
             }
 
         })
-    }
+    
 </script>
