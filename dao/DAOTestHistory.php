@@ -34,7 +34,7 @@ class DAOTestHistory extends DAO
         return $this
             ->getPdo()
             ->query(
-                "SELECT emp.reference_employee, prod.name AS pname, prod.has_product_passed_test, tg.name, prod.id
+                "SELECT emp.reference_employee, prod.name AS pname, prod.has_product_passed_test, tg.name, prod.test_group_id, prod.id AS prod_id
                 FROM test_group AS tg
 
                 JOIN (SELECT em.reference_employee, tg.name, etg.test_group_id
@@ -53,12 +53,13 @@ class DAOTestHistory extends DAO
                     JOIN `test-group_product` AS gp
                     ON tg.id = gp.test_group_id
                     JOIN product AS prod
-                    ON prod.id = gp.test_group_id
+                    ON prod.id = gp.product_id
                     WHERE gp.test_group_id
                     IN (SELECT id
                         FROM test_group)) AS prod
-                ON prod.test_group_id = tg.id")
-            ->fetchAll(PDO::FETCH_ASSOC);   
+                ON prod.test_group_id = tg.id"
+            )
+            ->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllBy($filter)
@@ -67,9 +68,9 @@ class DAOTestHistory extends DAO
 
     public function retrieve($id)
     {
-        
     }
 
-    public function update($array){
-    }   
+    public function update($array)
+    {
     }
+}
