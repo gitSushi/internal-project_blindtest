@@ -1,7 +1,6 @@
 <?php
 $navTitle = "Liste des produits";
 include("views/nav.php");
-
 ?>
 <!--Content-->
 
@@ -11,7 +10,7 @@ include("views/nav.php");
         <input list="dl" id="text" name="text" placeholder="nom d'un produit" required />
         <datalist id="dl">
             <?php foreach ($products as $prod) : ?>
-                <option id="<?= $prod['id'] ?>" value="<?= $prod['name'] ?>"></option>
+                <option id="<?= $prod->getId() ?>" value="<?= $prod->getName() ?>"></option>
             <?php endforeach ?>
         </datalist>
         <button type="submit" id="btn" class="button is-primary is-small">Choose</button>
