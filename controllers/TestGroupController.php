@@ -2,7 +2,6 @@
 
 namespace BWB\Framework\mvc\controllers;
 
-use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOProducts;
 use BWB\Framework\mvc\dao\DAOTestGroup;
 use DateTime;
@@ -13,7 +12,6 @@ use DateTime;
  */
 class TestGroupController extends SecurizedController
 {
-
     /**
      * Le constructeur de la classe Controller charge les datas passées par le client,
      * Pour charger le security middleware, le contrôleur parent invoque la methode
@@ -42,11 +40,8 @@ class TestGroupController extends SecurizedController
      */
     public function testGroupCreate()
     {
-        // /!\ STILL ISSUES WITH $productId /!\
-        // $productId = $this->inputPost()["product-id"];
-        // var_dump($productId);
-
-        // NOT IDEAL SOLUTION WAS TO LEAVE THE ID IN THE VALUE
+        // NOT IDEAL. SOLUTION WAS TO LEAVE THE ID IN THE VALUE
+        // (COULD STILL REVERT TO XMLHttpRequest)
         // THIS IS THE EXTRACTION
         $productChoice = explode("-", $this->inputPost()["product-choice"]);
         $productId = $productChoice[0];

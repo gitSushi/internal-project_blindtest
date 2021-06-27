@@ -40,7 +40,7 @@
                 <div class="field is-flex-grow-5">
                     <label class="label">Description *</label>
                     <div class="control">
-                        <textarea name="description" class="textarea is-medium" placeholder="Description" required></textarea>
+                        <textarea name="description" class="textarea" placeholder="Description" required></textarea>
                     </div>
                 </div>
             </div>
