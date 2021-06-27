@@ -58,7 +58,7 @@ class TestGroupController extends SecurizedController
             // /!\ HERE employee_id IS HARD-CODED
             // NEEDS TO BE CHANGED OTHERWISE #2 IS CARRYING THE COMPANY /!\
             $daoTestGroup->createEmployeeTestGroup(2, $lastId);
-            $daoTestGroup->createTestGroupProduct($lastId, $productId);
+            $daoTestGroup->createTestGroupProduct($lastId, $productId, 1);
 
             $this->response->render("addTestView", ["testGroup" => $daoTestGroup->retrieve($lastId)]);
         }
@@ -89,6 +89,10 @@ class TestGroupController extends SecurizedController
             $percentage = ($result - $min) / ($max - $min);
             $is_test_passed = $percentage >= 0.8 ? 1 : 0;
 
+            // si is_test_passed est 0 faire passer has_product_passed_test à 0
+            if ($is_test_passed === 0) {
+                $daoTestGroup->updatePassedTest($sendData["testGroupId"]);
+            }
 
             // ajoute a testdb.`test-test_group` (test_group_id, test_id, percentage, is_test_passed)
             if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTestId, $percentage, $is_test_passed)) {

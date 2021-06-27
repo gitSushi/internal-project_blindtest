@@ -114,18 +114,19 @@ class DAOTestGroup extends DAO
     /**
      * Met à jour la table relationnelle test-group_product
      */
-    public function createTestGroupProduct($test_group_id, $product_id)
+    public function createTestGroupProduct($test_group_id, $product_id, $has_product_passed_test)
     {
         $statement = $this
             ->getPdo()
             ->prepare(
-                "INSERT INTO `test-group_product` (test_group_id, product_id)
-                VALUES (:test_group_id, :product_id)"
+                "INSERT INTO `test-group_product` (test_group_id, product_id, has_product_passed_test)
+                VALUES (:test_group_id, :product_id, :has_product_passed_test)"
             );
 
         $datas = [
             "product_id" => $product_id,
-            "test_group_id" => $test_group_id
+            "test_group_id" => $test_group_id,
+            "has_product_passed_test" => $has_product_passed_test
         ];
 
         return $statement->execute($datas);
@@ -166,6 +167,18 @@ class DAOTestGroup extends DAO
         ];
 
         return $statement->execute($datas);
+    }
+
+    public function updatePassedTest($testGroupId)
+    {
+        return $this
+            ->getPdo()
+            ->prepare(
+                "UPDATE `test-group_product`
+                SET has_product_passed_test = 0
+                WHERE test_group_id = '$testGroupId'"
+            )
+            ->execute();
     }
 
     /**

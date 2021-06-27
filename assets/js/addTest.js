@@ -45,12 +45,12 @@ document.querySelector("#btnAddTest").addEventListener("click", event => {
         if (xhr.status === 200 && xhr.readyState === 4) {
             // console.log(xhr.response);
 
-            // ADD -> CLEARING THE FORM'S FIELDS
-            testName = "";
-            description = "";
-            minVal = "";
-            maxVal = "";
-            testResult = "";
+            // // ADD -> CLEARING THE FORM'S FIELDS
+            // testName = "";
+            // description = "";
+            // minVal = "";
+            // maxVal = "";
+            // testResult = "";
 
             const article = document.createElement("article");
             article.classList.add("message");

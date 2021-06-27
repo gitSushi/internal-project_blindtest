@@ -46,7 +46,7 @@ function renderGr(response) {
         display.appendChild(box);
 
         var link = document.createElement("a")
-        link.href = "http://localhost:1597/test/" + element.id;
+        link.href = "http://localhost:1597/tests/" + element.id;
         box.appendChild(link)
 
         var card = document.createElement("div")
