@@ -16,7 +16,7 @@ include("views/nav.php");
         <button type="submit" id="btn" class="button is-primary is-small">Choose</button>
     </div>
     <div class="panel-block">
-        <p id="msg"></p>
+        <div id="display" class="columns is-multiline"></div>
     </div>
 </nav>
 
