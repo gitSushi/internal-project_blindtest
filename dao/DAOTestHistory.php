@@ -33,7 +33,7 @@ class DAOTestHistory extends DAO
         return $this
             ->getPdo()
             ->query(
-                "SELECT emp.reference_employee, prod.name AS pname, prod.has_product_passed_test, tg.name, prod.test_group_id, prod.id AS prod_id
+                "SELECT emp.reference_employee, prod.name AS pname, prod.has_product_passed_test, tg.name, prod.test_group_id
                 FROM test_group AS tg
 
                 JOIN (SELECT em.reference_employee, tg.name, etg.test_group_id
