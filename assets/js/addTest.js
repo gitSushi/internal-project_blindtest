@@ -13,23 +13,29 @@ let minVal = "";
 let maxVal = "";
 let testResult = "";
 
-document.querySelector("#testName").addEventListener("change", event => {
+const testNameEl = document.querySelector("#testName");
+const descriptionEl = document.querySelector("#description");
+const minValEl = document.querySelector("#minVal");
+const maxValEl = document.querySelector("#maxVal");
+const testResultEl = document.querySelector("#testResult");
+
+testNameEl.addEventListener("change", event => {
     testName = event.target.value;
 });
 
-document.querySelector("#description").addEventListener("change", event => {
+descriptionEl.addEventListener("change", event => {
     description = event.target.value;
 });
 
-document.querySelector("#minVal").addEventListener("change", event => {
+minValEl.addEventListener("change", event => {
     minVal = event.target.value;
 });
 
-document.querySelector("#maxVal").addEventListener("change", event => {
+maxValEl.addEventListener("change", event => {
     maxVal = event.target.value;
 });
 
-document.querySelector("#testResult").addEventListener("change", event => {
+testResultEl.addEventListener("change", event => {
     testResult = event.target.value;
 });
 
@@ -101,6 +107,12 @@ document.querySelector("#btnAddTest").addEventListener("click", event => {
                 p.prepend(strong);
                 divNumber.append(p);
             }
+
+            testNameEl.value = "";
+            descriptionEl.value = "";
+            minValEl.value = "";
+            maxValEl.value = "";
+            testResultEl.value = "";
         }
     };
 
