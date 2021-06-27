@@ -1,17 +1,23 @@
 <?php
 
-class MinEmployee {
+namespace BWB\Framework\mvc\models;
+
+class MinEmployee
+{
     private $id, $reference_employee;
 
-    function getId(){
+    function getId()
+    {
         return $this->id;
     }
 
-    function getReference(){
+    function getReference()
+    {
         return $this->reference_employee;
     }
-    
-    function setReference($reference_employee){
+
+    function setReference($reference_employee)
+    {
         return $this->reference_employee = $reference_employee;
     }
 }

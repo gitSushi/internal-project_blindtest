@@ -14,49 +14,50 @@
 </head>
 
 <body>
-    <!-- Main container -->
-    <nav class="level">
-        <!-- Left side -->
-        <div class="level-left">
-            <?php
-            if ($_SERVER["REQUEST_URI"] !== "/") {
-            ?>
+    <main class="container mt-4">
+        <!-- Main container -->
+        <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+                <?php
+                if ($_SERVER["REQUEST_URI"] !== "/") {
+                ?>
+                    <div class="level-item">
+                        <p class="subtitle is-3">
+                            <a href="http://localhost:1597/">
+                                <span class="icon">
+                                    <i class="fas fa-arrow-left"></i>
+                                </span>
+                            </a>
+                        </p>
+                    </div>
+
+                <?php
+                }
+                ?>
+                <div class="level-item">
+                    <p class="title"><?= $navTitle ?></p>
+                </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
                 <div class="level-item">
                     <p class="subtitle is-3">
-                        <a href="http://localhost:1597/">
+                        <span class="icon">
+                            <i class="fas fa-user-cog"></i>
+                        </span>
+                    </p>
+                </div>
+                <p class="level-item"><strong>serial #</strong></p>
+                <div class="level-item">
+                    <p class="subtitle is-3">
+                        <a href="http://localhost:1597/logout">
                             <span class="icon">
-                                <i class="fas fa-arrow-left"></i>
+                                <i class="fas fa-sign-out-alt"></i>
                             </span>
                         </a>
                     </p>
                 </div>
-
-            <?php
-            }
-            ?>
-            <div class="level-item">
-                <p class="title"><?= $navTitle ?></p>
             </div>
-        </div>
-
-        <!-- Right side -->
-        <div class="level-right">
-            <div class="level-item">
-                <p class="subtitle is-3">
-                    <span class="icon">
-                        <i class="fas fa-user-cog"></i>
-                    </span>
-                </p>
-            </div>
-            <p class="level-item"><strong>serial #</strong></p>
-            <div class="level-item">
-                <p class="subtitle is-3">
-                    <a href="http://localhost:1597/logout">
-                        <span class="icon">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </span>
-                    </a>
-                </p>
-            </div>
-        </div>
-    </nav>
+        </nav>

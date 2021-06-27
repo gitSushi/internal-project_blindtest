@@ -1,4 +1,3 @@
-<main class="container mt-4">
     <?php
     $navTitle = "Ajout de tests";
     include("views/nav.php");
@@ -6,9 +5,9 @@
 
     <nav class="panel">
         <p class="panel-heading">
-            <?= $testGroup["name"] ?>
+            <?= $testGroup->getName() ?>
             <!-- LIGNE SUIVANTE PAS IDÉAL -->
-            <input hidden id="testGroupId" value="<?= $testGroup["id"] ?>" />
+            <input hidden id="testGroupId" value="<?= $testGroup->getId() ?>" />
         </p>
         <div class="panel-block">
             <div class="field is-flex-grow-5">
@@ -76,9 +75,9 @@
     </nav>
 
     <div id="tests"></div>
-</main>
+    </main>
 
-<script src="../assets/js/addTest.js"></script>
-</body>
+    <script src="../assets/js/addTest.js"></script>
+    </body>
 
-</html>
+    </html>

@@ -74,7 +74,7 @@ class DAOTestGroup extends DAO
                 FROM test_group
                 WHERE id = $id"
             )
-            ->fetchObject('\\BWB\\Framework\\mvc\\models\\MinTestGroup');
+            ->fetchObject("\\BWB\\Framework\\mvc\\models\\MinTestGroup");
     }
 
     /**
@@ -176,10 +176,15 @@ class DAOTestGroup extends DAO
         return $this
             ->getPdo()
             ->query(
-                "SELECT *
-                FROM testdb.test
+                "SELECT t.id, t.name, t.description, t.minimum_value, t.maximum_value, ttg.percentage
+                FROM testdb.test AS t
+                JOIN testdb.`test-test_group` AS ttg
+                ON t.id = ttg.test_id
+                WHERE t.id
+                IN (SELECT MAX(id)
+                    FROM testdb.test)
                 ORDER BY id
-                DESC LIMIT 0, 1"
+                LIMIT 1"
             )
             ->fetchObject("\\BWB\\Framework\\mvc\\models\\TestModel");
     }

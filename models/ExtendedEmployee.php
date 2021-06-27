@@ -1,20 +1,27 @@
 <?php
 
-class ExtendedEmployee {
+namespace BWB\Framework\mvc\models;
+
+class ExtendedEmployee
+{
     private $firstname, $lastname;
 
-    function getFisrtname(){
+    function getFisrtname()
+    {
         return $this->firstname;
     }
 
-    function getLastame(){
+    function getLastame()
+    {
         return $this->lastname;
     }
 
-    function setFirstname($firstname){
+    function setFirstname($firstname)
+    {
         return $this->firstname = $firstname;
     }
-    function setLastname($lastname){
+    function setLastname($lastname)
+    {
         return $this->lastname = $lastname;
     }
 }

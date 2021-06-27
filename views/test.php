@@ -1,4 +1,3 @@
-<main class="container mt-4">
 <?php
 $navTitle = "Détail du test";
 include("views/nav.php");
@@ -24,7 +23,7 @@ include("views/nav.php");
         <p hidden class="name"><?= $test['testname'] ?></p>
         <p hidden class="value"><?= $test['percentage'] ?></p>
         <p hidden class="minvalue"><?= $test['minimum_value'] ?></p>
-        <p hidden class="maxvalue"><?= $test['maximum_value'] ?></p>      
+        <p hidden class="maxvalue"><?= $test['maximum_value'] ?></p>
     <?php endforeach ?>
 </div>
 

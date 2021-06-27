@@ -79,18 +79,21 @@ class TestGroupController extends SecurizedController
 
         $lastTestId = $daoTestGroup->getLastTestId()["MAX(id)"] + 1;
 
+        // ajoute a testdb.test (id, name, description, minimum_value, maximum_value)
         if ($daoTestGroup->createSingleTest($lastTestId, $sendData["testName"], $sendData["description"], $sendData["minVal"], $sendData["maxVal"])) {
 
             $result = intval($sendData["testResult"]);
             $min = intval($sendData["minVal"]);
             $max = intval($sendData["maxVal"]);
-            // Normalize data to range 0 to 1
+            // Normalized data in range from 0 to 1
             $percentage = ($result - $min) / ($max - $min);
             $is_test_passed = $percentage >= 0.8 ? 1 : 0;
 
-            $lastTest = $daoTestGroup->getLastTestCreated();
 
-            if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTest->getId(), $percentage, $is_test_passed)) {
+            // ajoute a testdb.`test-test_group` (test_group_id, test_id, percentage, is_test_passed)
+            if ($daoTestGroup->createTestTestGroup($sendData["testGroupId"], $lastTestId, $percentage, $is_test_passed)) {
+
+                $lastTest = $daoTestGroup->getLastTestCreated();
                 $returnedDatas = ["testName" => $lastTest->getName(), "description" => $lastTest->getDescription(), "minVal" => $lastTest->getMinimumValue(), "maxVal" => $lastTest->getMaximumValue(), "testResult" => $lastTest->getPercentage()];
 
                 echo json_encode($returnedDatas);

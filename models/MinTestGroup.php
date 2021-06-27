@@ -1,5 +1,7 @@
 <?php
 
+namespace BWB\Framework\mvc\models;
+
 class MinTestGroup
 {
     private $id, $name;

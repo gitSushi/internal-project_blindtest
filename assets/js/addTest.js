@@ -46,6 +46,11 @@ document.querySelector("#btnAddTest").addEventListener("click", event => {
             // console.log(xhr.response);
 
             // ADD -> CLEARING THE FORM'S FIELDS
+            testName = "";
+            description = "";
+            minVal = "";
+            maxVal = "";
+            testResult = "";
 
             const article = document.createElement("article");
             article.classList.add("message");
