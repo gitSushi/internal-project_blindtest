@@ -4,17 +4,8 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOProducts;
-use BWB\Framework\mvc\models\DefaultModel;
-use BWB\Framework\mvc\models\TestModel;
 use Exception;
 
-/**
- * Ceci est un exemple de contrôleur 
- * il charge le security middleware dans le constructeur
- * 
- *
- * @author loic
- */
 class ProductsController extends Controller
 {
 

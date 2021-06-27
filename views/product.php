@@ -1,3 +1,4 @@
+<main class="container mt-4">
 <?php 
         $navTitle = "Liste des produits";
         include("views/nav.php");
@@ -18,11 +19,11 @@
         </div>
         <div class="panel-block">
             <p id="msg"></p>
-            <p id="display"></p>   
         </div>
     </nav>
   
     <!--Tests JS-->
     <script src="../assets/js/ajax.js"></script>
+    </main>
 </body>
 </html>

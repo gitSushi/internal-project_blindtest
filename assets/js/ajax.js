@@ -4,7 +4,7 @@ const dl = document.getElementById('dl')
 const msg = document.getElementById('msg')
 
 btn.addEventListener("click", (e) => {
-    //recupération de l'id 
+    //recupération de l'id du produit demandé
     const index = [... dl.options].map(o => o.value).indexOf(text.value)
     if (index === - 1) {
         msg.innerHTML = "Aucun id à afficher."
@@ -31,6 +31,7 @@ function requete(idasked){
      xhr.send(JSON.stringify({idasked}));
 }
 
+// Préparation de l'affichage de la réponse
 function renderGr(response) {
     console.log(response);
     var groupes = JSON.stringify(response);
